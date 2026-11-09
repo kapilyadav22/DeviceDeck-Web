@@ -168,6 +168,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#090a0f] text-zinc-100 antialiased selection:bg-deck-accent selection:text-white flex flex-col justify-between">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-55ZW69DG"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
