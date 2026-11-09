@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "@/components/Hero";
+import InteractiveVideo from "@/components/InteractiveVideo";
 import InteractiveStudio from "@/components/InteractiveStudio";
 import MenuBarCompanion from "@/components/MenuBarCompanion";
 import FeaturesGrid from "@/components/FeaturesGrid";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <InteractiveVideo />
       <InteractiveStudio />
       <MenuBarCompanion />
       <FeaturesGrid />
