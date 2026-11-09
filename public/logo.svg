@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="100%" height="100%">
+  <defs>
+    <linearGradient id="deckGrad" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#4f8cff" />
+      <stop offset="55%" stop-color="#2346cf" />
+      <stop offset="100%" stop-color="#142168" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#020838" flood-opacity="0.45" />
+    </filter>
+    <filter id="knobGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- App Icon Squircle -->
+  <rect x="96" y="96" width="832" height="832" rx="200" fill="url(#deckGrad)" filter="url(#shadow)" />
+  
+  <!-- Inner Highlight Border -->
+  <rect x="96" y="96" width="832" height="832" rx="200" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4" />
+
+  <!-- Track 1 -->
+  <line x1="280" y1="360" x2="744" y2="360" stroke="rgba(255,255,255,0.42)" stroke-width="26" stroke-linecap="round" />
+  <!-- Knob 1 -->
+  <circle cx="420" cy="360" r="46" fill="#f0f5ff" filter="url(#knobGlow)" />
+  
+  <!-- Track 2 -->
+  <line x1="280" y1="512" x2="744" y2="512" stroke="rgba(255,255,255,0.42)" stroke-width="26" stroke-linecap="round" />
+  <!-- Knob 2 -->
+  <circle cx="630" cy="512" r="46" fill="#f0f5ff" filter="url(#knobGlow)" />
+  
+  <!-- Track 3 -->
+  <line x1="280" y1="664" x2="744" y2="664" stroke="rgba(255,255,255,0.42)" stroke-width="26" stroke-linecap="round" />
+  <!-- Knob 3 -->
+  <circle cx="480" cy="664" r="46" fill="#f0f5ff" filter="url(#knobGlow)" />
+</svg>
+

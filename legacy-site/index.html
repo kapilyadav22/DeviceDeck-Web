@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10121b">
+  <meta name="description" content="Device Deck brings audio, display brightness, and desk profiles together in one native macOS app.">
+  <title>Device Deck — Your Mac setup, one click away</title>
+  <link rel="icon" type="image/svg+xml" href="assets/deck.svg">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="sliders" viewBox="0 0 24 24"><path d="M3 6h5m5 0h8M3 12h10m5 0h3M3 18h3m5 0h10"/><circle cx="10.5" cy="6" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/><circle cx="8.5" cy="18" r="2.5"/></symbol>
+    <symbol id="screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/></symbol>
+    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 4 9 5 9-5"/></symbol>
+    <symbol id="battery" viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 10v4M5 10v4m3-4v4m3-4v4"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/></symbol>
+    <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+  </svg>
+  <header class="site-header wrap">
+    <a class="brand" href="#top"><img src="assets/deck.svg" width="32" height="32" alt="">Device Deck</a>
+    <nav aria-label="Site navigation"><a href="#features">Features</a><a href="#faq">FAQ</a><a class="nav-cta" href="#download">Get the app ↗</a></nav>
+  </header>
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> NATIVE MAC APP <i></i> VERSION 1.5.1</div>
+        <h1>Your whole desk.<br><em>One click away.</em></h1>
+        <p>Switch audio, dim your displays, and let your Mac pick the right setup when you plug in.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="downloads/Device-Deck-1.5.1.dmg" download><svg><use href="#download"/></svg> Download for Mac</a>
+          <a class="text-link" href="#demo">Try the demo <span>↓</span></a>
+        </div>
+        <div class="requirements">macOS 13+ <b>·</b> Apple silicon &amp; Intel</div>
+      </div>
+      <div class="hero-demo" id="demo">
+        <div class="preview-top"><span><i></i> INTERACTIVE DEMO</span><span>01 / DESK CONTROL</span></div>
+        <div class="mock-window">
+          <div class="window-title"><span class="traffic"><i></i><i></i><i></i></span><span>Device Deck</span></div>
+          <div class="mock-body">
+            <aside aria-hidden="true">
+              <img src="assets/deck.svg" width="30" height="30" alt="">
+              <span><svg><use href="#sound"/></svg> Audio</span>
+              <span><svg><use href="#screen"/></svg> Displays</span>
+              <span class="selected"><svg><use href="#layers"/></svg> Profiles</span>
+              <span><svg><use href="#battery"/></svg> Battery</span>
+            </aside>
+            <div class="mock-main">
+              <div class="mock-heading"><h2>Desk profiles</h2><span id="mode-badge">WORK</span></div>
+              <div class="presets" role="group" aria-label="Demo desk profile">
+                <button type="button" aria-pressed="true" data-profile="work">Work</button>
+                <button type="button" aria-pressed="false" data-profile="calls">Calls</button>
+                <button type="button" aria-pressed="false" data-profile="night">Night</button>
+              </div>
+              <div class="mock-card">
+                <label for="brightness"><svg><use href="#sun"/></svg> Brightness <output id="brightness-value" for="brightness">74%</output></label>
+                <input id="brightness" type="range" min="25" max="100" value="74">
+              </div>
+              <div class="mock-card audio-preview">
+                <div><span>OUTPUT</span><strong id="speaker">Desk speakers</strong></div>
+                <div><span>INPUT</span><strong id="mic">Studio mic</strong></div>
+              </div>
+              <div class="demo-status" aria-live="polite" id="demo-status"><span></span> Work profile active</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-bottom"><span>SIMULATED CONTROLS</span><button type="button" id="connect">Simulate dock connection ↗</button></div>
+      </div>
+    </section>
+    <section class="features wrap" id="features">
+      <p class="kicker">01 / FEATURES</p>
+      <h2>Make your setup yours.</h2>
+      <div class="feature-grid">
+        <article><svg><use href="#sound"/></svg><h3>Audio in an instant</h3><p>See your active speaker and mic at a glance. Switch devices right from the menu bar.</p></article>
+        <article><svg><use href="#screen"/></svg><h3>Every screen in reach</h3><p>Adjust each display with its own slider. Switch monitor inputs on supported connections.</p></article>
+        <article><svg><use href="#layers"/></svg><h3>Plug in and get to work</h3><p>Save your audio and brightness. Assign a monitor or USB hub to apply a profile when it reconnects.</p></article>
+        <article><svg><use href="#battery"/></svg><h3>Know your battery</h3><p>See charge, estimated health, and cycle count on your MacBook. Jump to Apple’s Charge Limit setting on supported Macs.</p></article>
+        <article><svg><use href="#sliders"/></svg><h3>Mouse and keyboard</h3><p>Find pointer speed, scroll direction, keyboard layout, key repeat, and supported keyboard lighting in one place.</p></article>
+        <article><svg><use href="#sun"/></svg><h3>Keep your desk awake</h3><p>Start a timed session or keep your powered MacBook working with an external screen and the lid closed.</p></article>
+      </div>
+    </section>
+    <section class="faq wrap" id="faq">
+      <div><p class="kicker">02 / FAQ</p><h2>Before you start.</h2></div>
+      <div class="questions">
+        <details><summary>Which monitors work?</summary><p>Device Deck can dim detected displays with software when hardware brightness is unavailable. Hardware brightness and input switching depend on the display, connection, and adapter.</p></details>
+        <details><summary>How do profiles switch automatically?</summary><p>Save your current setup under Profiles, then pick a connected monitor or USB hub under Apply on connection. Leave Device Deck running in the menu bar and reconnect the selected hardware.</p></details>
+        <details><summary>How do I set a charge limit?</summary><p>Open the Battery tab and select Set Charge Limit in System Settings. Apple offers limits from 80% to 100% on Apple silicon Mac notebooks with macOS Tahoe 26.4 or later.</p></details>
+      </div>
+    </section>
+    <section class="download wrap" id="download">
+      <div class="download-card">
+        <img src="assets/deck.svg" alt="" width="52" height="52">
+        <h2>Bring your desk together.</h2>
+        <p>One native app for the settings you change every day.</p>
+        <a class="button primary" href="downloads/Device-Deck-1.5.1.dmg" download><svg><use href="#download"/></svg> Download Device Deck 1.5.1</a>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><a class="brand" href="#top"><img src="assets/deck.svg" width="25" height="25" alt="">Device Deck</a><span>Developed by Kapil Yadav</span><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>
