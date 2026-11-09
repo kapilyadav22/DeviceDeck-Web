@@ -1,42 +1,36 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Play,
   Pause,
   RotateCcw,
   Volume2,
-  VolumeX,
-  Maximize2,
-  Sparkles,
   Plug,
   Monitor,
-  Mic,
   Sun,
-  Layers,
-  Check,
   MousePointer,
-  ChevronRight,
 } from "lucide-react";
 
 interface Chapter {
   id: number;
   time: number;
   title: string;
-  icon: React.ReactNode;
+  iconName: "plug" | "monitor" | "volume" | "sun";
 }
 
 const chapters: Chapter[] = [
-  { id: 0, time: 0, title: "Dock Plug-in", icon: <Plug className="w-3.5 h-3.5 text-amber-400" /> },
-  { id: 1, time: 5, title: "DDC/CI Brightness", icon: <Monitor className="w-3.5 h-3.5 text-blue-400" /> },
-  { id: 2, time: 10, title: "Audio Routing", icon: <Volume2 className="w-3.5 h-3.5 text-purple-400" /> },
-  { id: 3, time: 15, title: "Night Profile", icon: <Sun className="w-3.5 h-3.5 text-emerald-400" /> },
+  { id: 0, time: 0, title: "Dock Plug-in", iconName: "plug" },
+  { id: 1, time: 5, title: "DDC/CI Brightness", iconName: "monitor" },
+  { id: 2, time: 10, title: "Audio Routing", iconName: "volume" },
+  { id: 3, time: 15, title: "Night Profile", iconName: "sun" },
 ];
 
 const TOTAL_DURATION = 20;
 
 export default function InteractiveVideo() {
+  const [mounted, setMounted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [speed, setSpeed] = useState(1);
@@ -47,16 +41,19 @@ export default function InteractiveVideo() {
   const [screenBrightness, setScreenBrightness] = useState(85);
   const [activeSpeaker, setActiveSpeaker] = useState("Desk Audio USB");
   const [activeMic, setActiveMic] = useState("Shure MV7 Dynamic");
-  const [notification, setNotification] = useState<string | null>("⚡️ CalDigit TS4 Dock Connected — Work Profile Applied");
+  const [notification, setNotification] = useState<string | null>(
+    "⚡️ CalDigit TS4 Dock Connected — Work Profile Applied"
+  );
   const [showCursor, setShowCursor] = useState(true);
   const [cursorPos, setCursorPos] = useState({ x: 50, y: 50 });
 
-  const animFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number>(Date.now());
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Video playback loop
   useEffect(() => {
-    if (!isPlaying || isInteractiveMode) return;
+    if (!mounted || !isPlaying || isInteractiveMode) return;
 
     const interval = setInterval(() => {
       setCurrentTime((prev) => {
@@ -69,7 +66,7 @@ export default function InteractiveVideo() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isPlaying, isInteractiveMode, speed]);
+  }, [mounted, isPlaying, isInteractiveMode, speed]);
 
   // Video Scene Director: update UI based on currentTime
   useEffect(() => {
@@ -117,7 +114,23 @@ export default function InteractiveVideo() {
     setIsPlaying(true);
   };
 
-  const currentChapter = chapters.reduce((prev, curr) => (currentTime >= curr.time ? curr : prev), chapters[0]);
+  const currentChapter = chapters.reduce(
+    (prev, curr) => (currentTime >= curr.time ? curr : prev),
+    chapters[0]
+  );
+
+  const renderIcon = (iconName: Chapter["iconName"]) => {
+    switch (iconName) {
+      case "plug":
+        return <Plug className="w-3.5 h-3.5 text-amber-400" />;
+      case "monitor":
+        return <Monitor className="w-3.5 h-3.5 text-blue-400" />;
+      case "volume":
+        return <Volume2 className="w-3.5 h-3.5 text-purple-400" />;
+      case "sun":
+        return <Sun className="w-3.5 h-3.5 text-emerald-400" />;
+    }
+  };
 
   return (
     <section className="py-20 relative overflow-hidden bg-[#07090e] border-y border-white/[0.06]">
@@ -153,7 +166,9 @@ export default function InteractiveVideo() {
               <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
               <span className="text-zinc-300 font-medium">Device Deck 1.5.1 Walkthrough</span>
               <span className="text-zinc-600">/</span>
-              <span className="text-deck-accentLight font-mono text-[11px]">{currentChapter.title}</span>
+              <span className="text-deck-accentLight font-mono text-[11px]">
+                {currentChapter.title}
+              </span>
             </div>
 
             <div className="flex items-center gap-2">
@@ -296,7 +311,7 @@ export default function InteractiveVideo() {
                         : "text-zinc-400 hover:text-white"
                     }`}
                   >
-                    {ch.icon}
+                    {renderIcon(ch.iconName)}
                     <span className="hidden sm:inline">{ch.title}</span>
                   </button>
                 ))}
@@ -316,7 +331,11 @@ export default function InteractiveVideo() {
                   className="w-8 h-8 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] text-white flex items-center justify-center transition-colors"
                   aria-label={isPlaying ? "Pause" : "Play"}
                 >
-                  {isPlaying && !isInteractiveMode ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                  {isPlaying && !isInteractiveMode ? (
+                    <Pause className="w-4 h-4" />
+                  ) : (
+                    <Play className="w-4 h-4 ml-0.5" />
+                  )}
                 </button>
 
                 {/* Reset */}
