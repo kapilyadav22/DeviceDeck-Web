@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Download } from "lucide-react";
 
 export default function DownloadSection() {
@@ -41,6 +42,17 @@ export default function DownloadSection() {
             <span className="text-[11px] text-zinc-500 font-mono mt-1">
               macOS 13+ · Universal (Apple Silicon &amp; Intel) · 2.3 MB
             </span>
+          </div>
+
+          {/* Installation Guide Link */}
+          <div className="mt-6 pt-5 border-t border-white/[0.06]">
+            <Link
+              href="/installation"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors"
+            >
+              <span>Need help opening past Gatekeeper warnings? Read the Installation Guide</span>
+              <span className="text-deck-accentLight">→</span>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Download, Sliders, ChevronRight } from "lucide-react";
 
 export default function Hero() {
@@ -49,9 +50,16 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Clean requirements tag */}
-        <div className="mt-4 text-[11px] text-zinc-500 font-mono">
-          macOS 13+ · Apple Silicon &amp; Intel · 2.3 MB
+        {/* Clean requirements tag & Installation guide link */}
+        <div className="mt-4 flex flex-col items-center gap-1.5 text-[11px] text-zinc-500 font-mono">
+          <span>macOS 13+ · Apple Silicon &amp; Intel · 2.3 MB</span>
+          <Link
+            href="/installation"
+            className="text-deck-accentLight hover:underline font-sans text-xs flex items-center gap-1 mt-0.5"
+          >
+            <span>First time installing? View the Gatekeeper &amp; Security Guide</span>
+            <span>→</span>
+          </Link>
         </div>
       </div>
     </section>
